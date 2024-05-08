@@ -1,6 +1,35 @@
 
 import math
 
+class Fraction:
+    def __init__(self, numerator, divisor):
+        self.num = numerator
+        self.div = divisor
+    def __str__(self):
+        return "{} / {}".format(self.num, self.div)
+    def __repr__(self):
+        return str(self)
+    def reduce(self):
+        """
+        Find the reduced form of a given fraction.
+
+        1. Find the factors of each numerator and divisor.
+        2. Find the factors shared between the two.
+        3. Divide both by said factors.
+        """
+        primes = generate_primes(int(math.sqrt(max(self.num, self.div))))
+        for prime in primes:
+            while True:
+                num_divisable = self.num % prime == 0
+                div_divisable = self.div % prime == 0
+                if not (num_divisable and div_divisable):
+                    break
+                # Otherwise, both still ARE divisible by said prime!
+                # Notice this is an integer divide
+                self.num //= prime
+                self.div //= prime
+        return self
+
 """
 Generate a list of the first N prime numbers using a simple memoization scheme.
 
