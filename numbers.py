@@ -38,7 +38,7 @@ Question:
     and the ratio of the number of primes found to the number of numbers checked.
     Both of which can change as we move to higher numbers.
 """
-def generate_primes():
+def generate_primes(bound):
     primes = [2] # Begin with the first prime
     for potential in range(2, bound):
         # Relatively quick floating-point calculation for later comparison.
